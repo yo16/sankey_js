@@ -52,7 +52,14 @@ function drawSankeyDiaglram(data){
     // 数を表示するかどうか
     // 表示する場合はてきとうな幅に、しない場合は細い幅になる
     var ShowNumber = true;
-
+    // Nodeの長方形の横幅
+    var NodeWidth = 60;
+    // 横方向のNode間の距離
+    var NodeDistanceX = NodeWidth * 3;   // 大体
+    // 縦方向のNode間の距離
+    var NodeDistanceY = 80;
+    // 左上の位置
+    var StartPos = 50;  // 仮で固定.ずらしたくなったらここを調整.自動ではやらない.
 
     // ダイアグラムを定義
     var colors = d3.scaleOrdinal(d3.schemeCategory10);
@@ -65,10 +72,13 @@ function drawSankeyDiaglram(data){
     ;
 
     // レイアウトを定義
-    var nodeWidth = ShowNumber ? 60: 2;
+    var useNodeWidth = ShowNumber ? NodeWidth: 2;
+    var layoutWidth = data.groups.length * (NodeDistanceX + NodeWidth);
+    var groupElms = [...data['groups']].map((d) => d.nodes.length);
+    var layoutHeight = NodeDistanceY * Math.max(...groupElms);
     var layout = d3.sankey()
-            .nodeWidth(nodeWidth)
-            .extent([[50, 50], [700, 200]]);
+            .nodeWidth(useNodeWidth)
+            .extent([[StartPos, StartPos], [layoutWidth, StartPos+layoutHeight]]);
 
     // 描画
     d3.select('#sankey_svg')

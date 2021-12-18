@@ -12,6 +12,9 @@ body {
     font-size: 9pt !important;
 }
 
+.link text {
+    font-size: 8pt;
+}
 .link path {
     opacity: 0.4;
 }
