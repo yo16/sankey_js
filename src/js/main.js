@@ -31,4 +31,18 @@ $(function(){
     d3.select('#sankey_svg')
         .datum(layout(data))
         .call(diagram);
-})
+    
+    // svgの大きさを調整
+    fitSvg('sankey_svg');
+});
+
+// svgのwidthとheightをその下のgに合わせる
+function fitSvg(svg_id){
+    var svg = $("#"+svg_id);
+    var g = $("#"+svg_id+" g");
+    console.log(svg[0].getBoundingClientRect());
+    console.log(g[0].getBoundingClientRect());
+    var g_rect = g[0].getBoundingClientRect()
+    svg.width(g_rect.x + g_rect.width);
+    svg.height(g_rect.y + g_rect.height);
+}
