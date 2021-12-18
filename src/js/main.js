@@ -3,23 +3,38 @@ $(function(){
     // データを整形
     var data = {
         'nodes': [
-            {'id': 'a', 'title': 'Source'},
-            {'id': 'b', 'title': 'Stage 1'},
-            {'id': 'c', 'title': 'Stage 2'},
-            {'id': 'c1', 'title': 'Stage 2-1'},
-            {'id': 'c2', 'title': 'Stage 2-2'}
+            {'id': 'TOP', 'title': 'TOP'},
+            {'id': 'C11', 'title': 'Contents1-1'},
+            {'id': 'C12', 'title': 'Contents1-2'},
+            {'id': 'C21', 'title': 'Contents2-1'},
+            {'id': 'C22', 'title': 'Contents2-2'},
+            {'id': 'C23', 'title': 'Contents2-3'},
+            {'id': 'C31', 'title': 'Contents3-1'},
+            {'id': 'C32', 'title': 'Contents3-2'}
         ],
         'links': [
-            {'source': 'a', 'target': 'b', 'type': 0, 'value': 2000},
-            {'source': 'a', 'target': 'c', 'type': 1, 'value': 8000},
-            {'source': 'c', 'target': 'c1', 'type': 1, 'value': 5200},
-            {'source': 'c', 'target': 'c2', 'type': 2, 'value': 2800},
+            {'source': 'TOP', 'target': 'C11', 'type': 0, 'value': 6},
+            {'source': 'TOP', 'target': 'C12', 'type': 1, 'value': 4},
+            {'source': 'C11', 'target': 'C21', 'type': 0, 'value': 1},
+            {'source': 'C11', 'target': 'C22', 'type': 0, 'value': 4},
+            {'source': 'C11', 'target': 'C23', 'type': 0, 'value': 1},
+            {'source': 'C12', 'target': 'C21', 'type': 1, 'value': 3},
+            {'source': 'C12', 'target': 'C22', 'type': 1, 'value': 1},
+            {'source': 'C21', 'target': 'C31', 'type': 1, 'value': 2},
+            {'source': 'C21', 'target': 'C32', 'type': 1, 'value': 2},
+            {'source': 'C22', 'target': 'C31', 'type': 0, 'value': 3},
+            {'source': 'C22', 'target': 'C32', 'type': 0, 'value': 2},
+            {'source': 'C23', 'target': 'C32', 'type': 0, 'value': 1}
         ],
         'groups': [
-            {'title': 'step2',
-             'nodes': ['b','c']},
-            {'title': 'step3',
-             'nodes': ['c1','c2']}
+            {'title': 'start',
+             'nodes': ['TOP']},
+             {'title': 'Step1',
+              'nodes': ['C11','C12']},
+             {'title': 'Step2',
+              'nodes': ['C21','C22','C23']},
+            {'title': 'Step3',
+             'nodes': ['C31','C32']}
         ]
     };
 
@@ -29,6 +44,7 @@ $(function(){
     // svgの大きさを調整
     fitSvg('sankey_svg');
 });
+
 
 // サンキーダイアグラムを描画
 function drawSankeyDiaglram(data){
@@ -52,7 +68,7 @@ function drawSankeyDiaglram(data){
     var nodeWidth = ShowNumber ? 60: 2;
     var layout = d3.sankey()
             .nodeWidth(nodeWidth)
-            .extent([[100, 50], [400, 200]]);
+            .extent([[50, 50], [700, 200]]);
 
     // 描画
     d3.select('#sankey_svg')
