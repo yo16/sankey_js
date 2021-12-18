@@ -1,10 +1,5 @@
 // 初期
 $(function(){
-    // 設定
-    // 数を表示するかどうか
-    // 表示する場合はてきとうな幅に、しない場合は細い幅になる
-    var ShowNumber = true;
-
     // データを整形
     var data = {
         'nodes': [
@@ -28,6 +23,21 @@ $(function(){
         ]
     };
 
+    // 描画
+    drawSankeyDiaglram(data);
+    
+    // svgの大きさを調整
+    fitSvg('sankey_svg');
+});
+
+// サンキーダイアグラムを描画
+function drawSankeyDiaglram(data){
+    // 設定
+    // 数を表示するかどうか
+    // 表示する場合はてきとうな幅に、しない場合は細い幅になる
+    var ShowNumber = true;
+
+
     // ダイアグラムを定義
     var colors = d3.scaleOrdinal(d3.schemeCategory10);
     var diagram = d3.sankeyDiagram()
@@ -48,10 +58,8 @@ $(function(){
     d3.select('#sankey_svg')
         .datum(layout(data))
         .call(diagram);
-    
-    // svgの大きさを調整
-    fitSvg('sankey_svg');
-});
+}
+
 
 // svgのwidthとheightをその下のgに合わせる
 function fitSvg(svg_id){
