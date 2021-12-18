@@ -1,7 +1,7 @@
 // 初期
 $(function(){
     // データを整形
-    var data = {
+    var sample_data = {
         'nodes': [
             {'id': 'TOP', 'title': 'TOP'},
             {'id': 'C11', 'title': 'Contents1-1'},
@@ -39,7 +39,7 @@ $(function(){
     };
 
     // 描画
-    drawSankeyDiaglram(data);
+    drawSankeyDiaglram(sample_data);
     
     // svgの大きさを調整
     fitSvg('sankey_svg');
