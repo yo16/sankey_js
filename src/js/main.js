@@ -1,5 +1,9 @@
 // 初期
 $(function(){
+    $("#btn_download").click(function(){
+        downloadSVG('sankey_svg');
+    });
+
     // データを整形
     var sample_data = {
         'nodes': [
@@ -48,7 +52,7 @@ $(function(){
 
 // サンキーダイアグラムを描画
 function drawSankeyDiaglram(data){
-    // 設定
+    // - - - - 設定 - - - -
     // 数を表示するかどうか
     // 表示する場合はてきとうな幅に、しない場合は細い幅になる
     var ShowNumber = true;
@@ -60,6 +64,7 @@ function drawSankeyDiaglram(data){
     var NodeDistanceY = 80;
     // 左上の位置
     var StartPos = 50;  // 仮で固定.ずらしたくなったらここを調整.自動ではやらない.
+    // - - - - - - - - - -
 
     // ダイアグラムを定義
     var colors = d3.scaleOrdinal(d3.schemeCategory10);
@@ -94,4 +99,34 @@ function fitSvg(svg_id){
     var g_rect = g[0].getBoundingClientRect()
     svg.width(g_rect.x + g_rect.width);
     svg.height(g_rect.y + g_rect.height);
+}
+
+
+// SVGをダウンロードさせる
+function downloadSVG(svg_id) {
+    var filename = "chart.svg";
+
+    var DOMURL = window.URL || window.webkitURL || window;
+    var svgElm = d3.select("#"+svg_id);
+    var svgData = (new XMLSerializer()).serializeToString(svgElm.node());
+
+    var svgBlob = new Blob(
+        [svgData],
+        { "type" : "text/xml" }
+    );
+    var url = DOMURL.createObjectURL(svgBlob);
+    var a = d3.select("body").append("a")
+    
+    a.attr("class", "downloadLink")
+        .attr("download", "chart.svg")
+        .attr("href", url)
+        .text("test")
+        .style("display", "none")
+        
+        a.node().click()
+
+    setTimeout(function() {
+        window.URL.revokeObjectURL(url)
+        a.remove()
+    }, 10)
 }
