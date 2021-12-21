@@ -1,3 +1,6 @@
+// 使用するモジュール
+// https://github.com/ricklupton/d3-sankey-diagram
+
 // 初期
 $(function(){
     $("#btn_download").click(function(){

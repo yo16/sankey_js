@@ -3,28 +3,3 @@ body {
     font-family: 'ヒラギノ角ゴ Pro W3',Hiragino Kaku Gothic Pro,"メイリオ",Meiryo,Osaka,'ＭＳ Ｐゴシック',MS PGothic,sans-serif;
 }
 
-/*
-.node-body {
-    fill: #eee;
-    stroke: #333;
-    stroke-width: 0.5px;
-}
-.node text {
-    font-size: 9pt !important;
-}
-
-.link text {
-    font-size: 8pt;
-}
-.link path {
-    opacity: 0.4;
-}
-
-.group text {
-    fill: #3ad;
-}
-.group rect { 
-    fill: #3ad;
-    opacity: 0.2;
-}
-*/
