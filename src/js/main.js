@@ -9,27 +9,51 @@ $(function(){
         var e = e_.originalEvent;
         e.preventDefault();
     });
+    /*
     $(document).on("dragleave", (e_)=>{
         var e = e_.originalEvent;
         e.stopPropagation();
         e.preventDefault();
-        $("body").css("background-color", "#333");
+
+        $("#fade_layer").fadeIn("fast");    // 未実装
+        //$("#fade_layer").show();
     });
+    */
     $(document).on("drop", (e_)=>{
         var e = e_.originalEvent;
         e.stopPropagation();
         e.preventDefault();
-        $("body").css("background-color", "#fff");
+
+        // 説明をクリア
+        $('#sample').remove();
+
+        // ファイルを読んで描画
         var files = e.dataTransfer.files;
-        readCsvFile(files[0]);
+        var fr = new FileReader();
+        fr.readAsText(files[0]);
+        fr.onload = (e)=>{
+            // CSVから配列変換
+            const text = e.target.result;
+            const csv_array = text.split(/[\r\n]+/).map(
+                (row) => 
+                    row
+                        .split(/[,\t]/)
+                        .map((v)=>v.replace(/ /g,''))
+            );
+    
+            // Sankeyダイアグラム用の構造へ変換
+            const data = formatForSankey(csv_array);
+
+            // Sankeyダイアグラムを表示
+            drawSankeyDiaglram(data);
+
+        }
     });
     
     // ボタン
-    $("#btn_download").click(()=>{
+    $('#btn_download').click(()=>{
         downloadSVG('sankey_svg');
     });
-
-
 
     // サンプルデータの取得
     var sample_data = getSampleData();
@@ -70,7 +94,7 @@ function getSampleData(){
             {'source': 'C23', 'target': 'C32', 'type': 0, 'value': 1}
         ],
         'groups': [
-            {'title': 'start',
+            {'title': 'Start',
              'nodes': ['TOP']},
              {'title': 'Step1',
               'nodes': ['C11','C12']},
@@ -85,6 +109,7 @@ function getSampleData(){
 
 // サンキーダイアグラムを描画
 function drawSankeyDiaglram(data){
+    console.log(data);
     // - - - - 設定 - - - -
     // 数を表示するかどうか
     // 表示する場合はてきとうな幅に、しない場合は細い幅になる
@@ -121,7 +146,8 @@ function drawSankeyDiaglram(data){
     var layout = d3.sankey()
             .nodeWidth(useNodeWidth)
             .extent([[StartPos, StartPos], [layoutWidth, StartPos+layoutHeight]]);
-
+    
+    console.log(data);
     // 描画
     d3.select(sankey_svg_id)
         .datum(layout(data))
@@ -139,25 +165,74 @@ function fitSvg(svg_id){
 }
 
 
-// CSVを読む
-// ほんとは、CSVを読んで配列を返すだけの関数にしたかったが、非同期なのでやめた
-function readCsvFile(file){
-    var fr = new FileReader();
-    fr.readAsText(file);
-    fr.onload = (e) => {
-        const text = e.target.result;
-        const csv_array = text.split("\n").map((row) => row.split(/[,\t]/));
-
-        // Sankeyダイアグラム用の構造へ変換
-        const data = formatForSankey(csv_array);
-        // Sankeyダイアグラムを表示
-        drawSankeyDiaglram(data);
-    }
-}
-
 // CSVの配列データをSankeyDiagram用の構造へ変換して返す
-function formatForSankey(ary){
-    return NaN;
+function formatForSankey(ar){
+    var nodes = [];
+    var node_titles = new Set();
+    var links = [];
+    var link_fromto = new Set(); // from-toを無理やり１つの文字列にして使う
+    var link_fromto_index = [];     // 名前からlinksのindexを得るための配列
+    var groups = [];
+    var getNodeName = (node_name, i) => 'n_'+i+'_'+node_name;
+    
+    console.log(ar);
+    // 1要素目はグループ名
+    for (const grp of ar[0]) {
+        groups.push({'title': grp, 'nodes': []});
+    }
+    // 2要素目以降はリンク
+    for(var i=1; i<ar.length; i++){
+        const row = ar[i];
+        for (var j=0; j<row.length; j++){
+            const node = row[j];
+            
+            // Node
+            if( !node_titles.has(node) ){
+                // 未登録 ---
+                // Node追加
+                const node_name = getNodeName(j,node);
+                node_titles.add(node);
+                nodes.push({
+                    'id': node_name,
+                    'title': node
+                });
+                // Group追加
+                groups[j]['nodes'].push(node_name);
+            }
+
+            // Link
+            if( j<row.length-1 ){   // 次がある
+                const cur_node_name = getNodeName(j, row[j]);
+                const next_node_name = getNodeName(j+1, row[j+1]);
+                const link_name =
+                    'l_'+cur_node_name+
+                    '_'+next_node_name;
+                if( link_fromto.has(link_name) ){
+                    // 登録済み ---
+                    // Linkカウントアップ
+                    const link_index = 
+                        link_fromto_index.findIndex(e=>e===link_name);
+                    links[link_index]['value']++;
+                }else{
+                    // 未登録 ---
+                    // Link追加
+                    link_fromto.add(link_name);
+                    link_fromto_index.push(link_name);
+                    links.push({
+                        'source': cur_node_name,
+                        'target': next_node_name,
+                        'type': 0,
+                        'value': 1
+                    });
+                }
+            }
+        }
+    }
+
+    // Linkのtype更新
+
+
+    return {'nodes': nodes, 'links': links, 'groups': groups};
 }
 
 
