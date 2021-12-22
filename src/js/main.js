@@ -3,12 +3,25 @@
 
 // 初期
 $(function(){
+    // トリガー
     $("#btn_download").click(function(){
         downloadSVG('sankey_svg');
     });
 
     // データを整形
-    var sample_data = {
+    var sample_data = getSampleData();
+
+    // 描画
+    drawSankeyDiaglram(sample_data);
+    
+    // svgの大きさを調整
+    fitSvg('sankey_svg');
+});
+
+
+// サンプルデータ（外に出したかった）
+function getInitialData(){
+    return {
         'nodes': [
             {'id': 'TOP', 'title': 'TOP'},
             {'id': 'C11', 'title': 'Contents1-1'},
@@ -44,13 +57,7 @@ $(function(){
              'nodes': ['C31','C32']}
         ]
     };
-
-    // 描画
-    drawSankeyDiaglram(sample_data);
-    
-    // svgの大きさを調整
-    fitSvg('sankey_svg');
-});
+}
 
 
 // サンキーダイアグラムを描画
