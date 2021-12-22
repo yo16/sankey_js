@@ -5,11 +5,27 @@
 $(function(){
     // トリガー
     // ファイルドロップ（document全体）
-    $(document).on("dragover", (event)=>{
-
+    $(document).on("dragover", (e_)=>{
+        var e = e_.originalEvent;
+        e.preventDefault();
     });
+    $(document).on("dragleave", (e_)=>{
+        var e = e_.originalEvent;
+        e.stopPropagation();
+        e.preventDefault();
+        $("body").css("background-color", "#333");
+    });
+    $(document).on("drop", (e_)=>{
+        var e = e_.originalEvent;
+        e.stopPropagation();
+        e.preventDefault();
+        $("body").css("background-color", "#fff");
+        var files = e.dataTransfer.files;
+        readCsvFile(files[0]);
+    });
+    
     // ボタン
-    $("#btn_download").click(function(){
+    $("#btn_download").click(()=>{
         downloadSVG('sankey_svg');
     });
 
@@ -82,6 +98,10 @@ function drawSankeyDiaglram(data){
     // 左上の位置
     var StartPos = 50;  // 仮で固定.ずらしたくなったらここを調整.自動ではやらない.
     // - - - - - - - - - -
+    var sankey_svg_id = '#sankey_svg';
+
+    // svg要素を初期化
+    $(sankey_svg_id).empty();
 
     // ダイアグラムを定義
     var colors = d3.scaleOrdinal(d3.schemeCategory10);
@@ -103,7 +123,7 @@ function drawSankeyDiaglram(data){
             .extent([[StartPos, StartPos], [layoutWidth, StartPos+layoutHeight]]);
 
     // 描画
-    d3.select('#sankey_svg')
+    d3.select(sankey_svg_id)
         .datum(layout(data))
         .call(diagram);
 }
@@ -116,6 +136,28 @@ function fitSvg(svg_id){
     var g_rect = g[0].getBoundingClientRect()
     svg.width(g_rect.x + g_rect.width);
     svg.height(g_rect.y + g_rect.height);
+}
+
+
+// CSVを読む
+// ほんとは、CSVを読んで配列を返すだけの関数にしたかったが、非同期なのでやめた
+function readCsvFile(file){
+    var fr = new FileReader();
+    fr.readAsText(file);
+    fr.onload = (e) => {
+        const text = e.target.result;
+        const csv_array = text.split("\n").map((row) => row.split(/[,\t]/));
+
+        // Sankeyダイアグラム用の構造へ変換
+        const data = formatForSankey(csv_array);
+        // Sankeyダイアグラムを表示
+        drawSankeyDiaglram(data);
+    }
+}
+
+// CSVの配列データをSankeyDiagram用の構造へ変換して返す
+function formatForSankey(ary){
+    return NaN;
 }
 
 
