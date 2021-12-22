@@ -4,11 +4,18 @@
 // 初期
 $(function(){
     // トリガー
+    // ファイルドロップ（document全体）
+    $(document).on("dragover", (event)=>{
+
+    });
+    // ボタン
     $("#btn_download").click(function(){
         downloadSVG('sankey_svg');
     });
 
-    // データを整形
+
+
+    // サンプルデータの取得
     var sample_data = getSampleData();
 
     // 描画
@@ -20,7 +27,7 @@ $(function(){
 
 
 // サンプルデータ（外に出したかった）
-function getInitialData(){
+function getSampleData(){
     return {
         'nodes': [
             {'id': 'TOP', 'title': 'TOP'},
