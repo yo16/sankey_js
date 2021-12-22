@@ -109,7 +109,6 @@ function getSampleData(){
 
 // サンキーダイアグラムを描画
 function drawSankeyDiaglram(data){
-    console.log(data);
     // - - - - 設定 - - - -
     // 数を表示するかどうか
     // 表示する場合はてきとうな幅に、しない場合は細い幅になる
@@ -147,7 +146,6 @@ function drawSankeyDiaglram(data){
             .nodeWidth(useNodeWidth)
             .extent([[StartPos, StartPos], [layoutWidth, StartPos+layoutHeight]]);
     
-    console.log(data);
     // 描画
     d3.select(sankey_svg_id)
         .datum(layout(data))
@@ -168,14 +166,17 @@ function fitSvg(svg_id){
 // CSVの配列データをSankeyDiagram用の構造へ変換して返す
 function formatForSankey(ar){
     var nodes = [];
-    var node_titles = new Set();
+    var node_names = new Set();
     var links = [];
     var link_fromto = new Set(); // from-toを無理やり１つの文字列にして使う
     var link_fromto_index = [];     // 名前からlinksのindexを得るための配列
     var groups = [];
-    var getNodeName = (node_name, i) => 'n_'+i+'_'+node_name;
+    var getNodeName = (group_idx, node_name) => 'n_'+group_idx+'_'+node_name;
+    var getLinkName = (node1, node2) => 'l_' + node1 + '_' + node2;
+
+    // Nodeの流入/流出情報
+    var node_flow = {};
     
-    console.log(ar);
     // 1要素目はグループ名
     for (const grp of ar[0]) {
         groups.push({'title': grp, 'nodes': []});
@@ -185,28 +186,47 @@ function formatForSankey(ar){
         const row = ar[i];
         for (var j=0; j<row.length; j++){
             const node = row[j];
+            const node_name = getNodeName(j,node);
             
             // Node
-            if( !node_titles.has(node) ){
+            if( !node_names.has(node_name) ){
                 // 未登録 ---
                 // Node追加
-                const node_name = getNodeName(j,node);
-                node_titles.add(node);
+                node_names.add(node_name);
                 nodes.push({
                     'id': node_name,
                     'title': node
                 });
                 // Group追加
                 groups[j]['nodes'].push(node_name);
+
+                // NodeFlow追加
+                node_flow[node_name] = {'from': {}, 'to': {}, 'isFirstGroup':j==0?true:false};
+            }
+            // NextNodeも
+            if( j<row.length-1 ){   // 次がある
+                const next_node_name = getNodeName(j+1, row[j+1]);
+                if( !node_names.has(next_node_name) ){
+                    // 未登録 ---
+                    // Node追加
+                    node_names.add(next_node_name);
+                    nodes.push({
+                        'id': next_node_name,
+                        'title': row[j+1]
+                    });
+                    // Group追加
+                    groups[j+1]['nodes'].push(next_node_name);
+    
+                    // NodeFlow追加(必ずfirstではない)
+                    node_flow[next_node_name] = {'from': {}, 'to': {}, 'isFirstGroup':false};
+                }
             }
 
             // Link
             if( j<row.length-1 ){   // 次がある
-                const cur_node_name = getNodeName(j, row[j]);
+                const cur_node_name = node_name;
                 const next_node_name = getNodeName(j+1, row[j+1]);
-                const link_name =
-                    'l_'+cur_node_name+
-                    '_'+next_node_name;
+                const link_name = getLinkName(cur_node_name, next_node_name);
                 if( link_fromto.has(link_name) ){
                     // 登録済み ---
                     // Linkカウントアップ
@@ -224,15 +244,67 @@ function formatForSankey(ar){
                         'type': 0,
                         'value': 1
                     });
+
+                    // NodeFlow追加
+                    // from側のtoにnextを登録
+                    if( next_node_name in node_flow[cur_node_name]['to'] ){
+                        // toに登録済み
+                        node_flow[cur_node_name]['to'][next_node_name] += 1;
+                    }else{
+                        // toに未登録
+                        node_flow[cur_node_name]['to'][next_node_name] = 1;
+                    }
+                    // to側のfromにcurを登録
+                    if( cur_node_name in node_flow[next_node_name]['from'] ){
+                        // fromに登録済み
+                        node_flow[next_node_name]['from'][cur_node_name] += 1;
+                    }else{
+                        // fromに未登録
+                        node_flow[next_node_name]['from'][cur_node_name] = 1;
+                    }
+
                 }
             }
         }
     }
 
     // Linkのtype更新
+    // トップのノードのみ
+    var i=0;
+    for( const node_name of [...node_names].filter(n => node_flow[n]['isFirstGroup']) ){
+        for( let next_node_name in node_flow[node_name]['to'] ){
+            const link_name = getLinkName(node_name, next_node_name);
+            const link_index = link_fromto_index.findIndex(e => e===link_name);
+            links[link_index]['type'] = i;
+            i++;
+        }
+    }
+    // トップより後のノードのみ
+    for(let i=1; i<groups.length; i++){
+        for( const node_name of groups[i]['nodes']){
+            // fromの中の一番多い流れをくむ
+            let max_flow = -1;
+            let max_flow_link_type = -1;
+            for( let from_node_name in node_flow[node_name]['from'] ){
+                const link_name = getLinkName(from_node_name, node_name);
+                const link_index = link_fromto_index.findIndex(e => e===link_name);
+                if( max_flow < links[link_index]['value'] ){
+                    max_flow = links[link_index]['value'];
+                    max_flow_link_type = links[link_index]['type'];
+                }
+            }
+            // 自分のtoは全部、maxのtypeを使う
+            for( let next_node_name in node_flow[node_name]['to'] ){
+                const link_name = getLinkName(node_name, next_node_name);
+                const link_index = link_fromto_index.findIndex(e => e===link_name);
+                links[link_index]['type'] = max_flow_link_type;
+            }
+        }
 
-
-    return {'nodes': nodes, 'links': links, 'groups': groups};
+        const ret = {'nodes': nodes, 'links': links, 'groups': groups};
+        //console.log(ret);
+        return ret;
+    }
 }
 
 
@@ -262,5 +334,5 @@ function downloadSVG(svg_id) {
     setTimeout(function() {
         window.URL.revokeObjectURL(url)
         a.remove()
-    }, 10)
+    }, 10);
 }
