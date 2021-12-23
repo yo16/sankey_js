@@ -45,7 +45,7 @@ $(function(){
             const data = formatForSankey(csv_array);
 
             // Sankeyダイアグラムを表示
-            drawSankeyDiaglram(data);
+            drawSankeyDiagram(data);
 
         }
     });
@@ -59,7 +59,7 @@ $(function(){
     var sample_data = getSampleData();
 
     // 描画
-    drawSankeyDiaglram(sample_data);
+    drawSankeyDiagram(sample_data);
     
     // svgの大きさを調整
     fitSvg('sankey_svg');
@@ -108,7 +108,7 @@ function getSampleData(){
 
 
 // サンキーダイアグラムを描画
-function drawSankeyDiaglram(data){
+function drawSankeyDiagram(data){
     // - - - - 設定 - - - -
     // 数を表示するかどうか
     // 表示する場合はてきとうな幅に、しない場合は細い幅になる

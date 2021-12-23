@@ -69,7 +69,7 @@ $(function(){
             const data = formatForSankey(csv_array);
 
             // Sankeyダイアグラムを表示
-            drawSankeyDiaglram(data);
+            drawSankeyDiagram(data);
 
         }
     });
@@ -83,7 +83,7 @@ $(function(){
     var sample_data = getSampleData();
 
     // 描画
-    drawSankeyDiaglram(sample_data);
+    drawSankeyDiagram(sample_data);
     
     // svgの大きさを調整
     fitSvg('sankey_svg');
@@ -132,7 +132,7 @@ function getSampleData(){
 
 
 // サンキーダイアグラムを描画
-function drawSankeyDiaglram(data){
+function drawSankeyDiagram(data){
     // - - - - 設定 - - - -
     // 数を表示するかどうか
     // 表示する場合はてきとうな幅に、しない場合は細い幅になる
@@ -395,7 +395,7 @@ function downloadSVG(svg_id) {
             <br />
             ↑のCSVから作られるもの↓
         </div>
-        <input type="button" id="btn_download" value="Download" />
+        <input type="button" id="btn_download" value="Download" /><br />
         <svg id="sankey_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ></svg>
     </body>
 </html>
