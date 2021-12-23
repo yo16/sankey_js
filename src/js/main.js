@@ -321,15 +321,15 @@ function downloadSVG(svg_id) {
         { "type" : "text/xml" }
     );
     var url = DOMURL.createObjectURL(svgBlob);
-    var a = d3.select("body").append("a")
+    var a = d3.select("body").append("a");
     
     a.attr("class", "downloadLink")
-        .attr("download", "chart.svg")
+        .attr("download", filename)
         .attr("href", url)
-        .text("test")
-        .style("display", "none")
+        .text("download")
+        .style("display", "none");
         
-        a.node().click()
+    a.node().click();
 
     setTimeout(function() {
         window.URL.revokeObjectURL(url)
