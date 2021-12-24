@@ -367,8 +367,8 @@ function downloadPNG(svg_id){
     var d3cvs = d3.select("body").append("canvas");
     d3cvs.attr("id", "canvas_download")
         .attr("width", width)
-        .attr("height", height);
-//        .style("display", "none");
+        .attr("height", height)
+        .style("display", "none");
     
     var cvs = $("#canvas_download")[0];
     var ctx = cvs.getContext("2d");
@@ -394,8 +394,9 @@ function downloadPNG(svg_id){
         a.node().click();
     
         setTimeout(function() {
-            window.URL.revokeObjectURL(url)
-            a.remove()
+            window.URL.revokeObjectURL(url);
+            a.remove();
+            d3cvs.remove();
         }, 10);
     }
     img.src = imgsrc;
