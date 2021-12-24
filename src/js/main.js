@@ -68,8 +68,11 @@ $(function(){
     });
     
     // ボタン
-    $('#btn_download').click(()=>{
+    $('#btn_download_svg').click(()=>{
         downloadSVG('sankey_svg');
+    });
+    $('#btn_download_png').click(()=>{
+        downloadPNG('sankey_svg');
     });
 
     // サンプルデータの取得
@@ -352,4 +355,48 @@ function downloadSVG(svg_id) {
         window.URL.revokeObjectURL(url)
         a.remove()
     }, 10);
+}
+
+// PNGをダウンロードさせる
+function downloadPNG(svg_id){
+    var filename = "chart.png";
+    var d3svgElm = d3.select("#"+svg_id);
+    var width = $("#"+svg_id).width();
+    var height = $("#"+svg_id).height();
+
+    var d3cvs = d3.select("body").append("canvas");
+    d3cvs.attr("id", "canvas_download")
+        .attr("width", width)
+        .attr("height", height);
+//        .style("display", "none");
+    
+    var cvs = $("#canvas_download")[0];
+    var ctx = cvs.getContext("2d");
+    var svg = $("#"+svg_id);
+    svg.attr("viewBox", "0 0 "+width+" "+height);
+
+    var svg_data = new XMLSerializer().serializeToString(svg[0]);
+    var imgsrc = "data:image/svg+xml;charset=utf-8;base64,"
+        + btoa(unescape(encodeURIComponent(svg_data)));
+    var img = new Image();
+    img.onload = function(){
+        ctx.drawImage(img, 0, 0);
+
+        var url = cvs.toDataURL("image/png");
+        var a = d3.select("body").append("a");
+        
+        a.attr("type", "application/octet-stream")
+            .attr("download", filename)
+            .attr("href", url)
+            .text("download")
+            .style("display", "none");
+            
+        a.node().click();
+    
+        setTimeout(function() {
+            window.URL.revokeObjectURL(url)
+            a.remove()
+        }, 10);
+    }
+    img.src = imgsrc;
 }
