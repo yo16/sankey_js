@@ -15,3 +15,8 @@ body {
     display: None;
     z-index: 1;
 }
+
+#alert_message {
+    color: #f00;
+    font-weight: bold;
+}

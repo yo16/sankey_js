@@ -12,9 +12,10 @@
 
     <body>
         <div id="sample">
-            CSVファイルをドラッグ＆ドロップしてください。<br />
+            CSVファイル or TSVファイルをドラッグ＆ドロップしてください。<br />
             <br />
-            CSVのフォーマットはこんな感じ↓のcsv<br />
+            <hr />
+            CSV,TSVのフォーマットはこんな感じ↓<br />
             １行＝１IDの遷移<br />
             <style>
                 table, td{
@@ -39,10 +40,13 @@
                 <tr><td>TOP</td><td>Contents1-2</td><td>Contents2-2</td><td>Contents3-1</td></tr>
                 <tr><td>TOP</td><td>Contents1-2</td><td>Contents2-1</td><td>Contents3-2</td></tr>
             </table>
-            <br />
-            ↑のCSVから作られるもの↓
+            <hr />
+            JSONのフォーマットはこんな感じ↓<br />
+
+            <hr />
+            ↑のファイルから作られるもの↓
         </div>
-        <input type="button" id="btn_download" value="Download" /><br />
+        <input type="button" id="btn_download" value="Download" /><br /><span id="alert_message"></span>
         <svg id="sankey_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ></svg>
         <div id="fade_layer"></div>
     </body>

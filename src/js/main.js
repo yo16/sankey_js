@@ -24,25 +24,42 @@ $(function(){
         e.stopPropagation();
         e.preventDefault();
 
+        // ファイルを読んで描画
+        var files = e.dataTransfer.files;
+        var file = files[0];
+        var file_type = file.name.split('.')[1].toUpperCase();
+        $("#alert_message").text("");
+        if( file_type!='CSV' && file_type!='TSV' && file_type!='JSON' ){
+            $("#alert_message").text('Drop ".csv" or ".tsv" or ".json" file!');
+            return;
+        }
+
         // 説明をクリア
         $('#sample').remove();
 
-        // ファイルを読んで描画
-        var files = e.dataTransfer.files;
         var fr = new FileReader();
-        fr.readAsText(files[0]);
+        fr.readAsText(file);
         fr.onload = (e)=>{
-            // CSVから配列変換
             const text = e.target.result;
-            const csv_array = text.split(/[\r\n]+/).map(
-                (row) => 
-                    row
-                        .split(/[,\t]/)
-                        .map((v)=>v.replace(/ /g,''))
-            );
-    
-            // Sankeyダイアグラム用の構造へ変換
-            const data = formatForSankey(csv_array);
+            var data = NaN;
+
+            // CSV or TSV
+            if( file_type=='CSV' || file_type=='TSV' ){
+                // CSV,TSVから配列変換
+                const csv_array = text.split(/[\r\n]+/).map(
+                    (row) => 
+                        row
+                            .split(/[,\t]/)
+                            .map((v)=>v.replace(/ /g,''))
+                );
+        
+                // Sankeyダイアグラム用の構造へ変換
+                data = formatForSankey(csv_array);
+
+            // json
+            }else{
+                data = JSON.parse(text);
+            }
 
             // Sankeyダイアグラムを表示
             drawSankeyDiagram(data);
