@@ -42,11 +42,47 @@
             </table>
             <hr />
             JSONのフォーマットはこんな感じ↓<br />
-
+            <pre><code>{
+    'nodes': [
+        {'id': 'TOP', 'title': 'TOP'},
+        {'id': 'C11', 'title': 'Contents1-1'},
+        {'id': 'C12', 'title': 'Contents1-2'},
+        {'id': 'C21', 'title': 'Contents2-1'},
+        {'id': 'C22', 'title': 'Contents2-2'},
+        {'id': 'C23', 'title': 'Contents2-3'},
+        {'id': 'C31', 'title': 'Contents3-1'},
+        {'id': 'C32', 'title': 'Contents3-2'}
+    ],
+    'links': [
+        {'source': 'TOP', 'target': 'C11', 'type': 0, 'value': 6},
+        {'source': 'TOP', 'target': 'C12', 'type': 1, 'value': 4},
+        {'source': 'C11', 'target': 'C21', 'type': 0, 'value': 1},
+        {'source': 'C11', 'target': 'C22', 'type': 0, 'value': 4},
+        {'source': 'C11', 'target': 'C23', 'type': 0, 'value': 1},
+        {'source': 'C12', 'target': 'C21', 'type': 1, 'value': 3},
+        {'source': 'C12', 'target': 'C22', 'type': 1, 'value': 1},
+        {'source': 'C21', 'target': 'C31', 'type': 1, 'value': 2},
+        {'source': 'C21', 'target': 'C32', 'type': 1, 'value': 2},
+        {'source': 'C22', 'target': 'C31', 'type': 0, 'value': 3},
+        {'source': 'C22', 'target': 'C32', 'type': 0, 'value': 2},
+        {'source': 'C23', 'target': 'C32', 'type': 0, 'value': 1}
+    ],
+    'groups': [
+        {'title': 'Start',
+            'nodes': ['TOP']},
+            {'title': 'Step1',
+            'nodes': ['C11','C12']},
+            {'title': 'Step2',
+            'nodes': ['C21','C22','C23']},
+        {'title': 'Step3',
+            'nodes': ['C31','C32']}
+    ]
+}</code></pre>
             <hr />
             ↑のファイルから作られるもの↓
         </div>
-        <input type="button" id="btn_download" value="Download" /><br /><span id="alert_message"></span>
+        <input type="button" id="btn_download" value="Download SVG" />
+        <br /><span id="alert_message"></span>
         <svg id="sankey_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ></svg>
         <div id="fade_layer"></div>
     </body>
