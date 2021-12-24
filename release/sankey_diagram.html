@@ -2,11 +2,16 @@
 <html lang="ja">
     <head>
         <meta charSet="utf-8"/>
-        <title>Sankey_js(v1.0)</title>
+        <title>Sankey_js(v2.0)</title>
         <style>
             body {
                 background-color: #fff;
                 font-family: 'ヒラギノ角ゴ Pro W3',Hiragino Kaku Gothic Pro,"メイリオ",Meiryo,Osaka,'ＭＳ Ｐゴシック',MS PGothic,sans-serif;
+            }
+            
+            #alert_message {
+                color: #f00;
+                font-weight: bold;
             }
         </style>
         <script language="JavaScript">
@@ -25,6 +30,9 @@ r=d[2],e=d[3],i=d[4],a=d[9]=d[9]===nn?f?0:n.length:Fs(d[9]-c,0),!a&&t&(gn|_n)&&(
 ;for(var r in t)ds.call(t,r)&&Gr(n,r,t[r])}),kh=Ui(function(n,t){zi(t,Uf(t),n)}),Mh=Ui(function(n,t,r,e){zi(t,Uf(t),n,e)}),Ah=Ui(function(n,t,r,e){zi(t,Tf(t),n,e)}),jh=hu(Qr),Lh=ni(function(n,t){n=is(n);var r=-1,e=t.length,i=e>2?t[2]:nn;for(i&&Cu(t[0],t[1],i)&&(e=1);++r<e;)for(var u=t[r],o=Uf(u),a=-1,f=o.length;++a<f;){var c=o[a],s=n[c];(s===nn||Ba(s,ss[c])&&!ds.call(n,c))&&(n[c]=u[c])}return n}),Ih=ni(function(n){return n.push(nn,au),r(zh,nn,n)}),Nh=Ki(function(n,t,r){null!=t&&"function"!=typeof t.toString&&(t=gs.call(t)),n[t]=r},Mc(jc)),Ch=Ki(function(n,t,r){null!=t&&"function"!=typeof t.toString&&(t=gs.call(t)),ds.call(n,t)?n[t].push(r):n[t]=[r]},_u),Oh=ni(Ee),Ph=Ui(function(n,t,r){Fe(n,t,r)}),zh=Ui(function(n,t,r,e){Fe(n,t,r,e)}),Sh=hu(function(n,t){var r={};if(null==n)return r;var e=!1;t=s(t,function(t){return t=bi(t,n),e||(e=t.length>1),t}),zi(n,pu(n),r),e&&(r=te(r,fn|cn|sn,fu));for(var i=t.length;i--;)di(r,t[i]);return r}),Rh=hu(function(n,t){return null==n?{}:Ze(n,t)}),Th=iu(Tf),Uh=iu(Uf),Dh=$i(function(n,t,r){return t=t.toLowerCase(),n+(r?tc(t):t)}),Wh=$i(function(n,t,r){return n+(r?"-":"")+t.toLowerCase()}),Bh=$i(function(n,t,r){return n+(r?" ":"")+t.toLowerCase()}),Fh=Fi("toLowerCase"),$h=$i(function(n,t,r){return n+(r?"_":"")+t.toLowerCase()}),Vh=$i(function(n,t,r){return n+(r?" ":"")+Zh(t)}),qh=$i(function(n,t,r){return n+(r?" ":"")+t.toUpperCase()}),Zh=Fi("toUpperCase"),Gh=ni(function(n,t){try{return r(n,nn,t)}catch(n){return Ka(n)?n:new ts(n)}}),Yh=hu(function(n,t){return i(t,function(t){t=Yu(t),Hr(n,t,rh(n[t],n))}),n}),Kh=Gi(),Jh=Gi(!0),Xh=ni(function(n,t){return function(r){return Ee(r,n,t)}}),Hh=ni(function(n,t){return function(r){return Ee(n,r,t)}}),Qh=Xi(s),nd=Xi(o),td=Xi(p),rd=nu(),ed=nu(!0),id=Ji(function(n,t){return n+t},0),ud=eu("ceil"),od=Ji(function(n,t){return n/t},1),ad=eu("floor"),fd=Ji(function(n,t){return n*t},1),cd=eu("round"),sd=Ji(function(n,t){return n-t},0);return v.after=wa,v.ary=ba,v.assign=Eh,v.assignIn=kh,v.assignInWith=Mh,v.assignWith=Ah,v.at=jh,v.before=xa,v.bind=rh,v.bindAll=Yh,v.bindKey=eh,v.castArray=Sa,v.chain=Zo,v.chunk=Hu,v.compact=Qu,v.concat=no,v.cond=Ec,v.conforms=kc,v.constant=Mc,v.countBy=Gl,v.create=Mf,v.curry=Ea,v.curryRight=ka,v.debounce=Ma,v.defaults=Lh,v.defaultsDeep=Ih,v.defer=ih,v.delay=uh,v.difference=Il,v.differenceBy=Nl,v.differenceWith=Cl,v.drop=to,v.dropRight=ro,v.dropRightWhile=eo,v.dropWhile=io,v.fill=uo,v.filter=ea,v.flatMap=ia,v.flatMapDeep=ua,v.flatMapDepth=oa,v.flatten=fo,v.flattenDeep=co,v.flattenDepth=so,v.flip=Aa,v.flow=Kh,v.flowRight=Jh,v.fromPairs=lo,v.functions=Of,v.functionsIn=Pf,v.groupBy=Jl,v.initial=vo,v.intersection=Ol,v.intersectionBy=Pl,v.intersectionWith=zl,v.invert=Nh,v.invertBy=Ch,v.invokeMap=Xl,v.iteratee=Lc,v.keyBy=Hl,v.keys=Tf,v.keysIn=Uf,v.map=sa,v.mapKeys=Df,v.mapValues=Wf,v.matches=Ic,v.matchesProperty=Nc,v.memoize=ja,v.merge=Ph,v.mergeWith=zh,v.method=Xh,v.methodOf=Hh,v.mixin=Cc,v.negate=La,v.nthArg=zc,v.omit=Sh,v.omitBy=Bf,v.once=Ia,v.orderBy=la,v.over=Qh,v.overArgs=oh,v.overEvery=nd,v.overSome=td,v.partial=ah,v.partialRight=fh,v.partition=Ql,v.pick=Rh,v.pickBy=Ff,v.property=Sc,v.propertyOf=Rc,v.pull=Sl,v.pullAll=wo,v.pullAllBy=bo,v.pullAllWith=xo,v.pullAt=Rl,v.range=rd,v.rangeRight=ed,v.rearg=ch,v.reject=pa,v.remove=Eo,v.rest=Na,v.reverse=ko,v.sampleSize=ga,v.set=Vf,v.setWith=qf,v.shuffle=_a,v.slice=Mo,v.sortBy=nh,v.sortedUniq=Oo,v.sortedUniqBy=Po,v.split=hc,v.spread=Ca,v.tail=zo,v.take=So,v.takeRight=Ro,v.takeRightWhile=To,v.takeWhile=Uo,v.tap=Go,v.throttle=Oa,v.thru=Yo,v.toArray=_f,v.toPairs=Th,v.toPairsIn=Uh,v.toPath=$c,v.toPlainObject=xf,v.transform=Zf,v.unary=Pa,v.union=Tl,v.unionBy=Ul,v.unionWith=Dl,v.uniq=Do,v.uniqBy=Wo,v.uniqWith=Bo,v.unset=Gf,v.unzip=Fo,v.unzipWith=$o,v.update=Yf,v.updateWith=Kf,v.values=Jf,v.valuesIn=Xf,v.without=Wl,v.words=xc,v.wrap=za,v.xor=Bl,v.xorBy=Fl,v.xorWith=$l,v.zip=Vl,v.zipObject=Vo,v.zipObjectDeep=qo,v.zipWith=ql,v.entries=Th,v.entriesIn=Uh,v.extend=kh,v.extendWith=Mh,Cc(v,v),v.add=id,v.attempt=Gh,v.camelCase=Dh,v.capitalize=tc,v.ceil=ud,v.clamp=Hf,v.clone=Ra,v.cloneDeep=Ua,v.cloneDeepWith=Da,v.cloneWith=Ta,v.conformsTo=Wa,v.deburr=rc,v.defaultTo=Ac,v.divide=od,v.endsWith=ec,v.eq=Ba,v.escape=ic,v.escapeRegExp=uc,v.every=ra,v.find=Yl,v.findIndex=oo,v.findKey=Af,v.findLast=Kl,v.findLastIndex=ao,v.findLastKey=jf,v.floor=ad,v.forEach=aa,v.forEachRight=fa,v.forIn=Lf,v.forInRight=If,v.forOwn=Nf,v.forOwnRight=Cf,v.get=zf,v.gt=sh,v.gte=lh,v.has=Sf,v.hasIn=Rf,v.head=ho,v.identity=jc,v.includes=ca,v.indexOf=po,v.inRange=Qf,v.invoke=Oh,v.isArguments=hh,v.isArray=dh,v.isArrayBuffer=ph,v.isArrayLike=Fa,v.isArrayLikeObject=$a,v.isBoolean=Va,v.isBuffer=vh,v.isDate=gh,v.isElement=qa,v.isEmpty=Za,v.isEqual=Ga,v.isEqualWith=Ya,v.isError=Ka,v.isFinite=Ja,v.isFunction=Xa,v.isInteger=Ha,v.isLength=Qa,v.isMap=_h,v.isMatch=rf,v.isMatchWith=ef,v.isNaN=uf,v.isNative=of,v.isNil=ff,v.isNull=af,v.isNumber=cf,v.isObject=nf,v.isObjectLike=tf,v.isPlainObject=sf,v.isRegExp=yh,v.isSafeInteger=lf,v.isSet=mh,v.isString=hf,v.isSymbol=df,v.isTypedArray=wh,v.isUndefined=pf,v.isWeakMap=vf,v.isWeakSet=gf,v.join=go,v.kebabCase=Wh,v.last=_o,v.lastIndexOf=yo,v.lowerCase=Bh,v.lowerFirst=Fh,v.lt=bh,v.lte=xh,v.max=qc,v.maxBy=Zc,v.mean=Gc,v.meanBy=Yc,v.min=Kc,v.minBy=Jc,v.stubArray=Tc,v.stubFalse=Uc,v.stubObject=Dc,v.stubString=Wc,v.stubTrue=Bc,v.multiply=fd,v.nth=mo,v.noConflict=Oc,v.noop=Pc,v.now=th,v.pad=oc,v.padEnd=ac,v.padStart=fc,v.parseInt=cc,v.random=nc,v.reduce=ha,v.reduceRight=da,v.repeat=sc,v.replace=lc,v.result=$f,v.round=cd,v.runInContext=n,v.sample=va,v.size=ya,v.snakeCase=$h,v.some=ma,v.sortedIndex=Ao,v.sortedIndexBy=jo,v.sortedIndexOf=Lo,v.sortedLastIndex=Io,v.sortedLastIndexBy=No,v.sortedLastIndexOf=Co,v.startCase=Vh,v.startsWith=dc,v.subtract=sd,v.sum=Xc,v.sumBy=Hc,v.template=pc,v.times=Fc,v.toFinite=yf,v.toInteger=mf,v.toLength=wf,v.toLower=vc,v.toNumber=bf,v.toSafeInteger=Ef,v.toString=kf,v.toUpper=gc,v.trim=_c,v.trimEnd=yc,v.trimStart=mc,v.truncate=wc,v.unescape=bc,v.uniqueId=Vc,v.upperCase=qh,v.upperFirst=Zh,v.each=aa,v.eachRight=fa,v.first=ho,Cc(v,function(){var n={};return le(v,function(t,r){ds.call(v.prototype,r)||(n[r]=t)}),n}(),{chain:!1}),v.VERSION="4.17.5",i(["bind","bindKey","curry","curryRight","partial","partialRight"],function(n){v[n].placeholder=v}),i(["drop","take"],function(n,t){X.prototype[n]=function(r){r=r===nn?1:Fs(mf(r),0);var e=this.__filtered__&&!t?new X(this):this.clone();return e.__filtered__?e.__takeCount__=$s(r,e.__takeCount__):e.__views__.push({size:$s(r,Pn),type:n+(e.__dir__<0?"Right":"")}),e},X.prototype[n+"Right"]=function(t){return this.reverse()[n](t).reverse()}}),i(["filter","map","takeWhile"],function(n,t){var r=t+1,e=r==jn||3==r;X.prototype[n]=function(n){var t=this.clone();return t.__iteratees__.push({iteratee:_u(n,3),type:r}),t.__filtered__=t.__filtered__||e,t}}),i(["head","last"],function(n,t){var r="take"+(t?"Right":"");X.prototype[n]=function(){return this[r](1).value()[0]}}),i(["initial","tail"],function(n,t){var r="drop"+(t?"":"Right");X.prototype[n]=function(){return this.__filtered__?new X(this):this[r](1)}}),X.prototype.compact=function(){return this.filter(jc)},X.prototype.find=function(n){return this.filter(n).head()},X.prototype.findLast=function(n){return this.reverse().find(n)},X.prototype.invokeMap=ni(function(n,t){return"function"==typeof n?new X(this):this.map(function(r){return Ee(r,n,t)})}),X.prototype.reject=function(n){return this.filter(La(_u(n)))},X.prototype.slice=function(n,t){n=mf(n);var r=this;return r.__filtered__&&(n>0||t<0)?new X(r):(n<0?r=r.takeRight(-n):n&&(r=r.drop(n)),t!==nn&&(t=mf(t),r=t<0?r.dropRight(-t):r.take(t-n)),r)},X.prototype.takeRightWhile=function(n){return this.reverse().takeWhile(n).reverse()},X.prototype.toArray=function(){return this.take(Pn)},le(X.prototype,function(n,t){var r=/^(?:filter|find|map|reject)|While$/.test(t),e=/^(?:head|last)$/.test(t),i=v[e?"take"+("last"==t?"Right":""):t],u=e||/^find/.test(t);i&&(v.prototype[t]=function(){var t=this.__wrapped__,o=e?[1]:arguments,a=t instanceof X,f=o[0],c=a||dh(t),s=function(n){var t=i.apply(v,l([n],o));return e&&h?t[0]:t};c&&r&&"function"==typeof f&&1!=f.length&&(a=c=!1);var h=this.__chain__,d=!!this.__actions__.length,p=u&&!h,g=a&&!d;if(!u&&c){t=g?t:new X(this);var _=n.apply(t,o);return _.__actions__.push({func:Yo,args:[s],thisArg:nn}),new G(_,h)}return p&&g?n.apply(this,o):(_=this.thru(s),p?e?_.value()[0]:_.value():_)})}),i(["pop","push","shift","sort","splice","unshift"],function(n){var t=fs[n],r=/^(?:push|sort|unshift)$/.test(n)?"tap":"thru",e=/^(?:pop|shift)$/.test(n);v.prototype[n]=function(){var n=arguments;if(e&&!this.__chain__){var i=this.value();return t.apply(dh(i)?i:[],n)}return this[r](function(r){return t.apply(dh(r)?r:[],n)})}}),le(X.prototype,function(n,t){var r=v[t];if(r){var e=r.name+"";(tl[e]||(tl[e]=[])).push({name:t,func:r})}}),tl[Yi(nn,pn).name]=[{name:"wrapper",func:nn}],X.prototype.clone=H,X.prototype.reverse=ft,X.prototype.value=Tt,v.prototype.at=Zl,v.prototype.chain=Ko,v.prototype.commit=Jo,v.prototype.next=Xo,v.prototype.plant=Qo,v.prototype.reverse=na,v.prototype.toJSON=v.prototype.valueOf=v.prototype.value=ta,v.prototype.first=v.prototype.head,Is&&(v.prototype[Is]=Ho),v}();"function"==typeof nn&&"object"==typeof nn.amd&&nn.amd?(Ir._=qr,nn(function(){return qr})):Cr?((Cr.exports=qr)._=qr,Nr._=qr):Ir._=qr}).call(ft)});if("function"==typeof f)try{at=ct}catch(n){}at||(at=window._);var st=at,lt=st,ht=c,dt="\0",pt="\0",vt="";c.prototype._nodeCount=0,c.prototype._edgeCount=0,c.prototype.isDirected=function(){return this._isDirected},c.prototype.isMultigraph=function(){return this._isMultigraph},c.prototype.isCompound=function(){return this._isCompound},c.prototype.setGraph=function(n){return this._label=n,this},c.prototype.graph=function(){return this._label},c.prototype.setDefaultNodeLabel=function(n){return lt.isFunction(n)||(n=lt.constant(n)),this._defaultNodeLabelFn=n,this},c.prototype.nodeCount=function(){return this._nodeCount},c.prototype.nodes=function(){return lt.keys(this._nodes)},c.prototype.sources=function(){var n=this;return lt.filter(this.nodes(),function(t){return lt.isEmpty(n._in[t])})},c.prototype.sinks=function(){var n=this;return lt.filter(this.nodes(),function(t){return lt.isEmpty(n._out[t])})},c.prototype.setNodes=function(n,t){var r=arguments,e=this;return lt.each(n,function(n){r.length>1?e.setNode(n,t):e.setNode(n)}),this},c.prototype.setNode=function(n,t){return lt.has(this._nodes,n)?(arguments.length>1&&(this._nodes[n]=t),this):(this._nodes[n]=arguments.length>1?t:this._defaultNodeLabelFn(n),this._isCompound&&(this._parent[n]=pt,this._children[n]={},this._children[pt][n]=!0),this._in[n]={},this._preds[n]={},this._out[n]={},this._sucs[n]={},++this._nodeCount,this)},c.prototype.node=function(n){return this._nodes[n]},c.prototype.hasNode=function(n){return lt.has(this._nodes,n)},c.prototype.removeNode=function(n){var t=this;if(lt.has(this._nodes,n)){var r=function(n){t.removeEdge(t._edgeObjs[n])};delete this._nodes[n],this._isCompound&&(this._removeFromParentsChildList(n),delete this._parent[n],lt.each(this.children(n),function(n){t.setParent(n)}),delete this._children[n]),lt.each(lt.keys(this._in[n]),r),delete this._in[n],delete this._preds[n],lt.each(lt.keys(this._out[n]),r),delete this._out[n],delete this._sucs[n],--this._nodeCount}return this},c.prototype.setParent=function(n,t){if(!this._isCompound)throw new Error("Cannot set parent in a non-compound graph");if(lt.isUndefined(t))t=pt;else{t+="";for(var r=t;!lt.isUndefined(r);r=this.parent(r))if(r===n)throw new Error("Setting "+t+" as parent of "+n+" would create a cycle");this.setNode(t)}return this.setNode(n),this._removeFromParentsChildList(n),this._parent[n]=t,this._children[t][n]=!0,this},c.prototype._removeFromParentsChildList=function(n){delete this._children[this._parent[n]][n]},c.prototype.parent=function(n){if(this._isCompound){var t=this._parent[n];if(t!==pt)return t}},c.prototype.children=function(n){if(lt.isUndefined(n)&&(n=pt),this._isCompound){var t=this._children[n];if(t)return lt.keys(t)}else{if(n===pt)return this.nodes();if(this.hasNode(n))return[]}},c.prototype.predecessors=function(n){var t=this._preds[n];if(t)return lt.keys(t)},c.prototype.successors=function(n){var t=this._sucs[n];if(t)return lt.keys(t)},c.prototype.neighbors=function(n){var t=this.predecessors(n);if(t)return lt.union(t,this.successors(n))},c.prototype.isLeaf=function(n){var t;return t=this.isDirected()?this.successors(n):this.neighbors(n),0===t.length},c.prototype.filterNodes=function(n){function t(n){var u=e.parent(n);return void 0===u||r.hasNode(u)?(i[n]=u,u):u in i?i[u]:t(u)}var r=new this.constructor({directed:this._isDirected,multigraph:this._isMultigraph,compound:this._isCompound});r.setGraph(this.graph());var e=this;lt.each(this._nodes,function(t,e){n(e)&&r.setNode(e,t)}),lt.each(this._edgeObjs,function(n){r.hasNode(n.v)&&r.hasNode(n.w)&&r.setEdge(n,e.edge(n))});var i={};return this._isCompound&&lt.each(r.nodes(),function(n){r.setParent(n,t(n))}),r},c.prototype.setDefaultEdgeLabel=function(n){return lt.isFunction(n)||(n=lt.constant(n)),this._defaultEdgeLabelFn=n,this},c.prototype.edgeCount=function(){return this._edgeCount},c.prototype.edges=function(){return lt.values(this._edgeObjs)},c.prototype.setPath=function(n,t){var r=this,e=arguments;return lt.reduce(n,function(n,i){return e.length>1?r.setEdge(n,i,t):r.setEdge(n,i),i}),this},c.prototype.setEdge=function(){var n,t,r,e,i=!1,u=arguments[0];"object"==typeof u&&null!==u&&"v"in u?(n=u.v,t=u.w,r=u.name,2===arguments.length&&(e=arguments[1],i=!0)):(n=u,t=arguments[1],r=arguments[3],arguments.length>2&&(e=arguments[2],i=!0)),n=""+n,t=""+t,lt.isUndefined(r)||(r=""+r);var o=h(this._isDirected,n,t,r);if(lt.has(this._edgeLabels,o))return i&&(this._edgeLabels[o]=e),this;if(!lt.isUndefined(r)&&!this._isMultigraph)throw new Error("Cannot set a named edge when isMultigraph = false");this.setNode(n),this.setNode(t),this._edgeLabels[o]=i?e:this._defaultEdgeLabelFn(n,t,r);var a=d(this._isDirected,n,t,r);return n=a.v,t=a.w,Object.freeze(a),this._edgeObjs[o]=a,s(this._preds[t],n),s(this._sucs[n],t),this._in[t][o]=a,this._out[n][o]=a,this._edgeCount++,this},c.prototype.edge=function(n,t,r){var e=1===arguments.length?p(this._isDirected,arguments[0]):h(this._isDirected,n,t,r);return this._edgeLabels[e]},c.prototype.hasEdge=function(n,t,r){var e=1===arguments.length?p(this._isDirected,arguments[0]):h(this._isDirected,n,t,r);return lt.has(this._edgeLabels,e)},c.prototype.removeEdge=function(n,t,r){var e=1===arguments.length?p(this._isDirected,arguments[0]):h(this._isDirected,n,t,r),i=this._edgeObjs[e];return i&&(n=i.v,t=i.w,delete this._edgeLabels[e],delete this._edgeObjs[e],l(this._preds[t],n),l(this._sucs[n],t),delete this._in[t][e],delete this._out[n][e],this._edgeCount--),this},c.prototype.inEdges=function(n,t){var r=this._in[n];if(r){var e=lt.values(r);return t?lt.filter(e,function(n){return n.v===t}):e}},c.prototype.outEdges=function(n,t){var r=this._out[n];if(r){var e=lt.values(r);return t?lt.filter(e,function(n){return n.w===t}):e}},c.prototype.nodeEdges=function(n,t){var r=this.inEdges(n,t);if(r)return r.concat(this.outEdges(n,t))};var gt={Graph:ht,version:"2.1.5"},_t=st,yt=ht,mt={write:v,read:y},wt=st,bt=m,xt=st,Et=w;w.prototype.size=function(){return this._arr.length},w.prototype.keys=function(){return this._arr.map(function(n){return n.key})},w.prototype.has=function(n){return xt.has(this._keyIndices,n)},w.prototype.priority=function(n){var t=this._keyIndices[n];if(void 0!==t)return this._arr[t].priority},w.prototype.min=function(){if(0===this.size())throw new Error("Queue underflow");return this._arr[0].key},w.prototype.add=function(n,t){var r=this._keyIndices;if(n=String(n),!xt.has(r,n)){var e=this._arr,i=e.length;return r[n]=i,e.push({key:n,priority:t}),this._decrease(i),!0}return!1},w.prototype.removeMin=function(){this._swap(0,this._arr.length-1);var n=this._arr.pop();return delete this._keyIndices[n.key],this._heapify(0),n.key},w.prototype.decrease=function(n,t){var r=this._keyIndices[n];if(t>this._arr[r].priority)throw new Error("New priority is greater than current priority. Key: "+n+" Old: "+this._arr[r].priority+" New: "+t);this._arr[r].priority=t,this._decrease(r)},w.prototype._heapify=function(n){var t=this._arr,r=2*n,e=r+1,i=n;r<t.length&&(i=t[r].priority<t[i].priority?r:i,e<t.length&&(i=t[e].priority<t[i].priority?e:i),i!==n&&(this._swap(n,i),this._heapify(i)))},w.prototype._decrease=function(n){for(var t,r=this,e=this._arr,i=e[n].priority;0!==n&&(t=n>>1,!(e[t].priority<i));)r._swap(n,t),n=t},w.prototype._swap=function(n,t){var r=this._arr,e=this._keyIndices,i=r[n],u=r[t];r[n]=u,r[t]=i,e[u.key]=n,e[i.key]=t};var kt=st,Mt=Et,At=b,jt=kt.constant(1),Lt=At,It=st,Nt=E,Ct=st,Ot=k,Pt=st,zt=Ot,St=M,Rt=st,Tt=A,Ut=Rt.constant(1),Dt=st,Wt=L;L.CycleException=I;var Bt=Wt,Ft=N,$t=st,Vt=C,qt=Vt,Zt=P,Gt=Vt,Yt=z,Kt=st,Jt=ht,Xt=Et,Ht=S,Qt={components:bt,dijkstra:At,dijkstraAll:Nt,findCycles:St,floydWarshall:Tt,isAcyclic:Ft,postorder:Zt,preorder:Yt,prim:Ht,tarjan:Ot,topsort:Wt},nr=gt,tr={Graph:nr.Graph,json:mt,alg:Qt,version:nr.version},rr=tr.Graph,er=tr.alg;n.sankey=Wn,n.sankeyPositionJustified=gn,n.sankeyPositionRelaxation=Zn,n.sankeyLink=Xn,n.sankeyNode=Qn,n.sankeyDiagram=ot,n.sankeyLinkTitle=ut,Object.defineProperty(n,"__esModule",{value:!0})});
         </script>
         <script language="JavaScript">
+// 使用するモジュール
+// https://github.com/ricklupton/d3-sankey-diagram
+
 // 初期
 $(function(){
     // トリガー
@@ -48,25 +56,42 @@ $(function(){
         e.stopPropagation();
         e.preventDefault();
 
+        // ファイルを読んで描画
+        var files = e.dataTransfer.files;
+        var file = files[0];
+        var file_type = file.name.split('.')[1].toUpperCase();
+        $("#alert_message").text("");
+        if( file_type!='CSV' && file_type!='TSV' && file_type!='JSON' ){
+            $("#alert_message").text('Drop ".csv" or ".tsv" or ".json" file!');
+            return;
+        }
+
         // 説明をクリア
         $('#sample').remove();
 
-        // ファイルを読んで描画
-        var files = e.dataTransfer.files;
         var fr = new FileReader();
-        fr.readAsText(files[0]);
+        fr.readAsText(file);
         fr.onload = (e)=>{
-            // CSVから配列変換
             const text = e.target.result;
-            const csv_array = text.split(/[\r\n]+/).map(
-                (row) => 
-                    row
-                        .split(/[,\t]/)
-                        .map((v)=>v.replace(/ /g,''))
-            );
-    
-            // Sankeyダイアグラム用の構造へ変換
-            const data = formatForSankey(csv_array);
+            var data = NaN;
+
+            // CSV or TSV
+            if( file_type=='CSV' || file_type=='TSV' ){
+                // CSV,TSVから配列変換
+                const csv_array = text.split(/[\r\n]+/).map(
+                    (row) => 
+                        row
+                            .split(/[,\t]/)
+                            .map((v)=>v.replace(/ /g,''))
+                );
+        
+                // Sankeyダイアグラム用の構造へ変換
+                data = formatForSankey(csv_array);
+
+            // json
+            }else{
+                data = JSON.parse(text);
+            }
 
             // Sankeyダイアグラムを表示
             drawSankeyDiagram(data);
@@ -75,8 +100,11 @@ $(function(){
     });
     
     // ボタン
-    $('#btn_download').click(()=>{
+    $('#btn_download_svg').click(()=>{
         downloadSVG('sankey_svg');
+    });
+    $('#btn_download_png').click(()=>{
+        downloadPNG('sankey_svg');
     });
 
     // サンプルデータの取得
@@ -360,14 +388,60 @@ function downloadSVG(svg_id) {
         a.remove()
     }, 10);
 }
+
+// PNGをダウンロードさせる
+function downloadPNG(svg_id){
+    var filename = "chart.png";
+    var d3svgElm = d3.select("#"+svg_id);
+    var width = $("#"+svg_id).width();
+    var height = $("#"+svg_id).height();
+
+    var d3cvs = d3.select("body").append("canvas");
+    d3cvs.attr("id", "canvas_download")
+        .attr("width", width)
+        .attr("height", height)
+        .style("display", "none");
+    
+    var cvs = $("#canvas_download")[0];
+    var ctx = cvs.getContext("2d");
+    var svg = $("#"+svg_id);
+    svg.attr("viewBox", "0 0 "+width+" "+height);
+
+    var svg_data = new XMLSerializer().serializeToString(svg[0]);
+    var imgsrc = "data:image/svg+xml;charset=utf-8;base64,"
+        + btoa(unescape(encodeURIComponent(svg_data)));
+    var img = new Image();
+    img.onload = function(){
+        ctx.drawImage(img, 0, 0);
+
+        var url = cvs.toDataURL("image/png");
+        var a = d3.select("body").append("a");
+        
+        a.attr("type", "application/octet-stream")
+            .attr("download", filename)
+            .attr("href", url)
+            .text("download")
+            .style("display", "none");
+            
+        a.node().click();
+    
+        setTimeout(function() {
+            window.URL.revokeObjectURL(url);
+            a.remove();
+            d3cvs.remove();
+        }, 10);
+    }
+    img.src = imgsrc;
+}
         </script>
     </head>
 
     <body>
         <div id="sample">
-            CSVファイルをドラッグ＆ドロップしてください。<br />
+            CSVファイル or TSVファイルをドラッグ＆ドロップしてください。<br />
             <br />
-            CSVのフォーマットはこんな感じ↓のcsv<br />
+            <hr />
+            CSV,TSVのフォーマットはこんな感じ↓<br />
             １行＝１IDの遷移<br />
             <style>
                 table, td{
@@ -392,10 +466,51 @@ function downloadSVG(svg_id) {
                 <tr><td>TOP</td><td>Contents1-2</td><td>Contents2-2</td><td>Contents3-1</td></tr>
                 <tr><td>TOP</td><td>Contents1-2</td><td>Contents2-1</td><td>Contents3-2</td></tr>
             </table>
-            <br />
-            ↑のCSVから作られるもの↓
+            <hr />
+            JSONのフォーマットはこんな感じ↓<br />
+            <pre><code>{
+    'nodes': [
+        {'id': 'TOP', 'title': 'TOP'},
+        {'id': 'C11', 'title': 'Contents1-1'},
+        {'id': 'C12', 'title': 'Contents1-2'},
+        {'id': 'C21', 'title': 'Contents2-1'},
+        {'id': 'C22', 'title': 'Contents2-2'},
+        {'id': 'C23', 'title': 'Contents2-3'},
+        {'id': 'C31', 'title': 'Contents3-1'},
+        {'id': 'C32', 'title': 'Contents3-2'}
+    ],
+    'links': [
+        {'source': 'TOP', 'target': 'C11', 'type': 0, 'value': 6},
+        {'source': 'TOP', 'target': 'C12', 'type': 1, 'value': 4},
+        {'source': 'C11', 'target': 'C21', 'type': 0, 'value': 1},
+        {'source': 'C11', 'target': 'C22', 'type': 0, 'value': 4},
+        {'source': 'C11', 'target': 'C23', 'type': 0, 'value': 1},
+        {'source': 'C12', 'target': 'C21', 'type': 1, 'value': 3},
+        {'source': 'C12', 'target': 'C22', 'type': 1, 'value': 1},
+        {'source': 'C21', 'target': 'C31', 'type': 1, 'value': 2},
+        {'source': 'C21', 'target': 'C32', 'type': 1, 'value': 2},
+        {'source': 'C22', 'target': 'C31', 'type': 0, 'value': 3},
+        {'source': 'C22', 'target': 'C32', 'type': 0, 'value': 2},
+        {'source': 'C23', 'target': 'C32', 'type': 0, 'value': 1}
+    ],
+    'groups': [
+        {'title': 'Start',
+            'nodes': ['TOP']},
+            {'title': 'Step1',
+            'nodes': ['C11','C12']},
+            {'title': 'Step2',
+            'nodes': ['C21','C22','C23']},
+        {'title': 'Step3',
+            'nodes': ['C31','C32']}
+    ]
+}</code></pre>
+            <hr />
+            ↑のファイルから作られるもの↓
         </div>
-        <input type="button" id="btn_download" value="Download" /><br />
+        <input type="button" id="btn_download_svg" value="Download SVG" />
+        <input type="button" id="btn_download_png" value="Download PNG" />
+        <br /><span id="alert_message"></span>
         <svg id="sankey_svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ></svg>
+        <div id="fade_layer"></div>
     </body>
 </html>
