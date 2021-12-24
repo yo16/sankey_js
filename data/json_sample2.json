@@ -1,0 +1,32 @@
+{
+    "nodes": [
+        {"id": "N11", "title": "Node1-1"},
+        {"id": "N12", "title": "Node1-2"},
+        {"id": "N21", "title": "Node2-1"},
+        {"id": "N22", "title": "Node2-2"},
+        {"id": "N23", "title": "Node2-3"},
+        {"id": "N31", "title": "Node3-1"},
+        {"id": "N32", "title": "Node3-2"}
+    ],
+    "links": [
+        {"source": "N11", "target": "N21", "type": 0, "value": 30},
+        {"source": "N11", "target": "N31", "type": 0, "value": 20},
+        {"source": "N11", "target": "N32", "type": 0, "value": 10},
+        {"source": "N12", "target": "N21", "type": 1, "value": 50},
+        {"source": "N12", "target": "N31", "type": 1, "value": 5},
+        {"source": "N12", "target": "N22", "type": 1, "value": 20},
+        {"source": "N21", "target": "N31", "type": 1, "value": 20},
+        {"source": "N21", "target": "N32", "type": 1, "value": 45},
+        {"source": "N23", "target": "N32", "type": 2, "value": 10}
+    ],
+    "groups": [
+        {"title": "Step1",
+         "nodes": ["N11", "N12"]},
+         {"title": "Step2",
+          "nodes": ["N21", "N22"]},
+         {"title": "Step3A",
+          "nodes": ["N31"]},
+         {"title": "Step3B",
+          "nodes": ["N32"]}
+    ]
+}
