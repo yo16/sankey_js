@@ -51,6 +51,7 @@ $(function(){
                         row
                             .split(/[,\t]/)
                             .map((v)=>v.replace(/ /g,''))
+                            .filter((v)=>v!='')
                 );
         
                 // Sankeyダイアグラム用の構造へ変換
